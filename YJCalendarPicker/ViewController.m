@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "YJCalendarPickerView.h"
 
-@interface ViewController ()
+@interface ViewController ()<YJCalendarPickerDelegate>
 
 @end
 
@@ -19,6 +20,16 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)tapButton:(id)sender {
+    YJCalendarPickerView *view = [YJCalendarPickerView showCalendarWithCurrentDate:nil completeHandler:^(NSDate * _Nullable date) {
+        NSLog(@"block :%@", date);
+    }];
+    view.delegate = self;
+}
+
+- (void)selectedDate:(NSDate *_Nonnull)date sender:(YJCalendarPickerView *_Nonnull)aView {
+    NSLog(@"%@", date);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

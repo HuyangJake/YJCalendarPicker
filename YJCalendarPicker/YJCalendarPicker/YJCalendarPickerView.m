@@ -49,8 +49,10 @@ static CGFloat mainViewWidth, screenWidth;
     view.minDate = minDate;
     view.maxDate = maxDate;
     view.selectDate = handler;
-    [view.calendarView selectDate:date];
-    [view.calendarView setCurrentPage:date];
+    if (date) {
+        [view.calendarView selectDate:date];
+        [view.calendarView setCurrentPage:date];
+    }
     [kRootWindow addSubview:view];
     [view displayView];
     return view;
